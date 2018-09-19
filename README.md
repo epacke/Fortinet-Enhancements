@@ -1,4 +1,4 @@
-<p style="text-align: center;">Fortinet Enhancements</p>
+<p><span style="font-size: 24px;">Fortinet Enhancements</span></p>
 
 <p>These enhancements are there to add some features to your Fortinet experience</p>
 
