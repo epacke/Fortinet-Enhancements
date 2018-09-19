@@ -9,4 +9,6 @@
 
 <p>Add the remaining information, click OK and you&#39;re good to go.</p>
 
+<p><img src="https://raw.githubusercontent.com/epacke/Fortinet-Enhancements/master/images/zscaler-node-dropdown.png" style="width: 300px;" class="fr-fic fr-dib"></p>
+
 <p><img src="https://raw.githubusercontent.com/epacke/Fortinet-Enhancements/master/images/zscalerexample.png" style="width: 300px;" class="fr-fic fr-dib"></p>
