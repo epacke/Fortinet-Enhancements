@@ -23,6 +23,7 @@
     if(window.location.href.indexOf("/ng/vpn/ipsec/edit") > -1){
 
         waitFor("select#phase1_type")
+            .then(selectZscalerMenuItem)
             .then(() => getCENR(settings.zScalerDomain))
             .then(response => parseEndpoints(response))
             .then(endPoints => generateDropDown(endPoints))
@@ -56,6 +57,14 @@ function addZscalerButton(){
             })
     }
 
+}
+
+function selectZscalerMenuItem (){
+    return new Promise(function(resolve, reject){
+        $("div.ng-isolate-scope.menu-item a.ng-scope.selected").removeClass("selected");
+        $("li#zscaler-menu a.ng-scope").addClass("selected");
+        resolve()
+    })
 }
 
 
