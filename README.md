@@ -9,4 +9,4 @@
 
 <p>Add the remaining information, click OK and you&#39;re good to go.</p>
 
-<p><img src="https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1537374137646-1537374137646.jpeg" style="width: 300px;" class="fr-fic fr-dib"></p>
+<p><img src="https://raw.githubusercontent.com/epacke/Fortinet-Enhancements/master/images/zscaler-example.png" style="width: 300px;" class="fr-fic fr-dib"></p>
