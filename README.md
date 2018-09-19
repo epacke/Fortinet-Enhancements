@@ -23,15 +23,6 @@
 	<li>Download Tampermonkey for <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" rel="nofollow" target="_blank">Chrome</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/" rel="nofollow" target="_blank">Firefox</a>.</li>
 	<li>Download the <a href="https://github.com/epacke/Fortinet-Enhancements/blob/master/fortinet.js" rel="noopener noreferrer" target="_blank">script</a>.</li>
 	<li>Click on the small icon at the top right corner of your browser and select &quot;Dashboard&quot;.</li>
-	<li>
-
-		<p>Click on the new script icon:
-			<br><img src="https://raw.githubusercontent.com/epacke/Fortinet-Enhancements/master/images/tampermonkey_configuration.png" class="fr-fic fr-dib fr-fil">
-			<br>
-		</p>
-	</li>
+	<li>Click on the new script icon:</li>
 </ol>
-
-<p>
-	<br>
-</p>
+<br><img src="https://raw.githubusercontent.com/epacke/Fortinet-Enhancements/master/images/tampermonkey_configuration.png" class="fr-fic fr-dib fr-fil">
