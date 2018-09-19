@@ -22,11 +22,42 @@
         .then(endPoints => generateDropDown(endPoints))
         .then(html => insertDropDown(html))
         .then(() => attachDropDownEventHandlers())
+        .then(() => configureForm())
         .catch(err => console.log(err))
 
 })();
 
-function generateDropDown(locations){
+function configureForm (){
+
+    return new Promise(function(resolve, reject){
+        // Set IKE version 2
+        $("label[for='phase1_ike-version_2']").trigger("click");
+        
+        // Remove all proposals except one and configure it to use AES256/SHA256
+        let phase1Proposal = $("div[ng-form='proposal']").has("h2:contains('Phase 1 Proposal')");
+        phase1Proposal.find("button.f-list-edit-button.ng-scope.remove:not(:first)").trigger("click");
+        phase1Proposal.find("select#phase1_proposal_enc0").val("string:aes256");
+        phase1Proposal.find("select#phase1_proposal_auth0").val("string:sha256");
+
+        // Change the phase 1 key life
+        $("input#phase1_keylife").val("3600");
+
+        // Show the advanced configuration for phase 2
+        $("input#phase2_advanced").trigger("click")
+
+        // Configure the Phase 2 proposal
+        let phase2Proposal = $("div[ng-form]").has("div.proposals-container h2:contains('Phase 2 Proposal')")
+        phase2Proposal.find("button.f-list-edit-button.ng-scope.remove:not(.ng-hide):not(:first)").trigger("click");
+        phase2Proposal.find("select#phase1_proposal_enc0").val("string:null");
+        phase2Proposal.find("select#phase1_proposal_auth0").val("string:sha256");
+
+        // Change the phase 2 key life
+        $("input#phase2_keylifeseconds").val("3600");
+        resolve();
+    });
+}
+
+function generateDropDown (locations){
 
     let notesToText = {
         "RS": "Regional Surcharge",
@@ -59,10 +90,10 @@ function generateDropDown(locations){
 
 function insertDropDown(html){
     
-    return new Promise(resolve, reject){
+    return new Promise(function(resolve, reject){
         $("div[ng-form='details'] section").append(html);
         resolve();
-    }
+    });
 }
 
 function attachDropDownEventHandlers(){
@@ -70,11 +101,12 @@ function attachDropDownEventHandlers(){
     return new Promise(function(resolve, reject){
 
         let zScalerEndPointList = $("#zscaler-endpoint-list");
+        let gatewayTypeSelect = $("select#phase1_type");
 
         // Make sure that the IP/DNS is updated as the drop down changes
         zScalerEndPointList.on("change", function(){
-            
-            let gatewayType = $("select#phase1_type option:selected").attr("label");
+
+            let gatewayType = gatewayTypeSelect.find("option:selected").attr("label");
             let selectedEndPoint = zScalerEndPointList.find("option:selected");
 
             let value = ""
@@ -87,11 +119,8 @@ function attachDropDownEventHandlers(){
                     $("input#phase1_remotegw-ddns").val(selectedEndPoint.val());
                     break;
             }
-        })
 
-        // Update the IP/DNS if the gateway type changes from ie. "Static IP Address2 to "Dynamic DNS"
-        $("select#phase1_type").on("change", function(){
-            zScalerEndPointList.trigger("change");
+            
         })
         
         resolve();
@@ -104,7 +133,7 @@ function waitForPage(locations){
 
     return new Promise(function(resolve, reject){
         let timer = setInterval(function(){
-            if($("div[ng-form='details'").length != 0){
+            if($("select#phase1_type").length != 0){
                 clearInterval(timer);
                 resolve(locations);
             }
